@@ -10,35 +10,39 @@ namespace Xakpc.BlazorBits.Bootstrap
     /// Very primitive simple generic command
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Command<T> : ICommand
+    public class Command<T> : ICommand 
     {
         private readonly Action<T> _action;
+        private readonly Func<T, bool> _canDoAction;
 
-        public Command(Action<T> action)
+        public Command(Action<T> action, Func<T, bool> canDoAction = null)
         {
             _action = action;
+            _canDoAction = canDoAction;
         }
 
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(T parameter)
-        {                   
-            return true;
+        {
+            return _canDoAction?.Invoke(parameter) ?? true;
         }
 
         public bool CanExecute(object parameter)
         {
-            return CanExecute((T)parameter);
+            return CanExecute(parameter == null ? default : (T)parameter);
         }
 
         public void Execute(T parameter)
         {
-            _action.Invoke(parameter);
+            if (CanExecute(parameter))
+                _action.Invoke(parameter);
         }
 
         public void Execute(object parameter)
         {
-            Execute((T)parameter);
+            Execute(parameter == null ? default : (T)parameter);
         }
     }
 }
+ 

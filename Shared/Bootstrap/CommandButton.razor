@@ -1,22 +1,24 @@
 ﻿@using System.Windows.Input
 
-<button type="button" class="@($"btn {Class}")" @onclick="Callback" @attributes="InputAttributes">@ChildContent</button>
+<button type="button" class="@($"btn {Class} {Disabled}")" @onclick="Callback" @attributes="InputAttributes">@ChildContent</button>
 
 @code {
-    [Parameter]
-    public ICommand Command { get; set; }
+        [Parameter]
+        public ICommand Command { get; set; }
 
-    [Parameter]
-    public RenderFragment ChildContent { get; set; }
+        [Parameter]
+        public RenderFragment ChildContent { get; set; }
 
-    [Parameter]
-    public string Class { get; set; } = "btn-primary";
+        [Parameter]
+        public string Class { get; set; } = "btn-primary";
 
-    [Parameter]
-    public object Parameter { get; set; }
+        [Parameter]
+        public object Parameter { get; set; }
 
-    [Parameter(CaptureUnmatchedValues = true)]
-    public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>();
+        [Parameter(CaptureUnmatchedValues = true)]
+        public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>();
+
+    private string Disabled => Command == null ? "" : Command.CanExecute(Parameter) ? "" : "disabled";
 
     private void Callback()
     {
