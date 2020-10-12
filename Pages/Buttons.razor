@@ -1,0 +1,37 @@
+﻿@page "/buttons"
+<h2>Buttons</h2>
+
+<CommandButton class="btn-primary">Primary</CommandButton>
+<CommandButton class="btn-secondary">Secondary</CommandButton>
+<CommandButton class="btn-success">Success</CommandButton>
+
+<h3>Buttons with commands</h3>
+
+<p>Current value: @Value</p>
+<CommandButton class="btn-primary" Command="AddCommand" Parameter="1">+</CommandButton>
+<CommandButton class="btn-secondary" Command="AddCommand" Parameter="-1">-</CommandButton>
+
+<h3 class="mt-3">Button group</h3>
+<RowButtonGroup/>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+<tbody>
+    @foreach (var item in Items)
+    {
+        <tr>
+            <td>@item</td>
+            <td><RowButtonGroup 
+                    EditCommand="EditItemCommand" 
+                    DeleteCommand="DeleteItemCommand" 
+                    Parameter="item"/></td>
+        </tr>
+    }
+</tbody>
+</table>
+

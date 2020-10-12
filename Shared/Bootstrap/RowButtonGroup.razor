@@ -1,0 +1,15 @@
+﻿@using System.Windows.Input
+
+<div class="btn-group" role="group" aria-label="Basic example">
+    <CommandButton class="btn-sm btn-primary" Command="EditCommand" Parameter="Parameter">Edit</CommandButton>
+    <CommandButton class="btn-sm btn-danger" Command="DeleteCommand" Parameter="Parameter">Delete</CommandButton>
+</div>
+
+@code {
+    [Parameter]
+    public ICommand EditCommand { get; set; }
+    [Parameter]
+    public ICommand DeleteCommand { get; set; }
+    [Parameter]
+    public object Parameter { get; set; }
+}

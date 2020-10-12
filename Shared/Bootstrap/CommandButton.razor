@@ -1,0 +1,25 @@
+﻿@using System.Windows.Input
+
+<button type="button" class="@($"btn {Class}")" @onclick="Callback" @attributes="InputAttributes">@ChildContent</button>
+
+@code {
+    [Parameter]
+    public ICommand Command { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Class { get; set; } = "btn-primary";
+
+    [Parameter]
+    public object Parameter { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>();
+
+    private void Callback()
+    {
+        Command?.Execute(Parameter);
+    }
+}
