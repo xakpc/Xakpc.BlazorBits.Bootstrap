@@ -1,0 +1,41 @@
+﻿<div class="card @Class" @attributes="InputAttributes">
+    @if (Title != null)
+    {
+        <div class="card-header">
+            <h5 class="card-title">@Title</h5>
+        </div>
+    }
+    <div class="card-body">
+        @ChildContent
+    </div>
+    @if (Footer != null)
+    {
+        <div class="card-footer text-muted">
+            @Footer
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "mb-3";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    
+    [Parameter]
+    public RenderFragment Body
+    {
+        get => ChildContent;
+        set => ChildContent = value;
+    }
+
+    [Parameter]
+    public RenderFragment Footer { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>();
+}
