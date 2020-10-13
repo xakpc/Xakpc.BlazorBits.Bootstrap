@@ -1,0 +1,11 @@
+﻿<div class="spinner-border @Class" role="status">
+    <span class="sr-only">@Text</span>
+</div>
+
+@code {
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string Text { get; set; } = "Loading...";
+}
