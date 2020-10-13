@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Xakpc.BlazorBits.Bootstrap.Data;
+using Xakpc.BlazorBits.Bootstrap.ViewModels;
 
 namespace Xakpc.BlazorBits.Bootstrap
 {
@@ -29,6 +30,8 @@ namespace Xakpc.BlazorBits.Bootstrap
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+
+            services.AddScoped<ProgressViewModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

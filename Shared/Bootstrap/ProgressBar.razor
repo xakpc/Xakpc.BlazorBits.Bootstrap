@@ -1,0 +1,16 @@
+﻿<div class="progress @Class" style="@(Height == null ? "" : $"height: {Height}px")">
+  <div class="progress-bar" role="progressbar" style="@($"width: {Progress}%")" aria-valuenow="@Progress" aria-valuemin="0" aria-valuemax="100">@ChildContent</div>
+</div>
+
+@code {
+    [Parameter]
+    public string Class {get;set;}
+    [Parameter]
+    public int Progress {get;set;}
+    [Parameter]
+    public int? Height {get;set;}
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>();
+}

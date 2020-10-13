@@ -1,0 +1,22 @@
+﻿@page "/progress"
+@inherits Xakpc.BlazorBits.Bootstrap.ViewModels.ContextComponentBase;
+
+<h1 class="mt-3">Progress</h1>
+
+<ProgressBar Progress="0" Class="mt-2"/>
+<ProgressBar Progress="25" Class="mt-2"/>
+<ProgressBar Progress="50" Class="mt-2"/>
+<ProgressBar Progress="75" Class="mt-2"/>
+<ProgressBar Progress="100" Class="mt-2"/>
+
+<h2 class="mt-3">Labels</h2>
+<ProgressBar Progress="25" Class="mt-2">25%</ProgressBar>
+
+<h2 class="mt-3">Height</h2>
+<ProgressBar Progress="25" Height="1" Class="mt-2"/>
+<ProgressBar Progress="25" Height="20" Class="mt-2"/>
+
+<h2 class="mt-3">Interactive (with VM)</h2>
+<ProgressBar Progress="@DataContext.Progress" Class="mt-2 mb-2">@((DataContext.Progress/100f).ToString("P0"))</ProgressBar>
+<CommandButton class="btn-primary" Command="@DataContext.Add">+</CommandButton>
+<CommandButton class="btn-secondary" Command="@DataContext.Subtract">-</CommandButton>
